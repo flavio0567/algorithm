@@ -1,0 +1,116 @@
+<script>
+//===== Linked Lists ==========//
+function Node(data) {
+    this.data = data;
+    this.next = null;
+  }
+
+function SinglyLinkedList() {
+    this.head = null;
+    this.tail = null;
+    this.numberOfNodes = 0;
+}
+
+SinglyLinkedList.prototype.add = function(data) {
+    var node = new Node(data);
+    if(!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      this.tail = node;
+    }
+    this.numberOfNodes++;
+};
+
+SinglyLinkedList.prototype.display = function() {
+    var string = '';
+    var current = this.head;
+    while(current) {
+      string += current.data + ' ';
+      current = current.next;
+    }
+    console.log(string.trim());
+};
+
+SinglyLinkedList.prototype.addFront = function(firstNode, data)  {
+  var node = new Node(data);
+  this.head = firstNode;
+  temp = this.head;
+  this.head = node;
+  node.next = temp;
+  this.numberOfNodes++;
+  return node;
+}
+
+SinglyLinkedList.prototype.removeFront = function(firstNode) {
+  if (!this.head) { return null;}
+  
+  this.head = firstNode;
+  tempNode = this.head;
+  this.head = this.head.next;
+
+  tempNode = null;
+  this.numberOfNodes--;
+  return this.head;
+}
+
+contains = function(firstNode, val) {
+  if(!firstNode) {
+    return false;
+  }
+  this.head = firstNode;
+  var current = this.head;
+  while(current) {
+    if(current.data === val) {
+      return true;
+    }
+    current = current.next;
+  } 
+  return false;
+}
+
+front = function(firstNode) {
+  
+  if(!list) {
+    return false;
+  }
+    if (!this.head) { return null;}
+  var current = list.head;
+  while(current) {
+    if(current.data === val) {
+      return true;
+    }
+    current = current.next;
+  } 
+  return false;
+}
+
+// ===== test area ==============================//
+var singlyLinkedList = new SinglyLinkedList();
+// singlyLinkedList.print(); // => ''
+singlyLinkedList.add(1);
+singlyLinkedList.add(2);
+singlyLinkedList.add(3);
+singlyLinkedList.add('get');
+singlyLinkedList.display(); // => 1 2 3 get
+var firstNode = singlyLinkedList.head;
+singlyLinkedList.addFront(firstNode, 34);
+singlyLinkedList.display(); // => 34 1 2 3 4 
+var firstNode = singlyLinkedList.head;
+singlyLinkedList.addFront(firstNode, 33);
+singlyLinkedList.display(); // => 33 34 1 2 3 get
+var firstNode = singlyLinkedList.head;
+singlyLinkedList.removeFront(firstNode);
+singlyLinkedList.display(); // => 34 1 2 3 get
+var firstNode = singlyLinkedList.head;
+singlyLinkedList.removeFront(firstNode);
+singlyLinkedList.display(); // => 1 2 3 get
+var firstNode = singlyLinkedList.head;
+var con = contains(firstNode, 1);
+console.log(con);
+var firstNode = singlyLinkedList.head;
+var front = front(firstNode);
+console.log(front);
+
+</script>

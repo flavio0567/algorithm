@@ -1,0 +1,57 @@
+
+<script>
+
+    myObject = {
+        a: 'a',
+        b = {
+            a: 1
+        } 
+    };
+    console.log(myObject);
+
+var objectOne = {
+    first: [1,2,3],
+    second: "Hello Universe",
+    third: [{x:5, y:10, z:[11,22,33]}],
+    fourth: {
+        k: "nested object",
+        m: [55, 77, 99],
+        fun: function() {
+            var x = "H e l l o";
+            console.log(x);
+        }
+    },
+    fifth: [111, 222, [123, ["retrieve me!" ], 345] ]
+}
+
+console.log( objectOne.third[0].x);
+console.log( objectOne.third[0].z[2]);
+console.log( objectOne.fourth.k);
+console.log( objectOne["fourth"]["k"]);
+objectOne.fourth.fun();
+console.log( objectOne.fifth[2][1][0]);
+console.log("==========================");
+
+var objectTwo = {
+    first: {
+        a: {
+            b: {
+                c: {
+                    d: {
+                        key: "Value2"
+                    }
+                }
+            },
+            c: {
+                key: "Value1"
+            }
+        }
+    }
+}
+console.log(objectTwo["first"]["a"]["c"].key);
+console.log(objectTwo.first.a.c.key);
+console.log("==========================");
+
+
+</script>
+        

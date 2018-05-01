@@ -1,0 +1,33 @@
+<script>
+
+console.log("=======arrConcat===============");
+
+function arrConcat(arr1, arr2) {
+    var j = arr1.length;
+    var newArr = arr1;
+    for (var i = 0; i < arr2.length ; i++) {
+        newArr.push(arr2[i]);
+        j++;
+    }
+  return newArr;
+}
+var arr = arrConcat([5,6,100,0], [23,34,"Coding","Dojo","Awesome"]);
+console.log(arr);
+
+console.log("=======shuflle==================");
+
+function shuffle(arr) {
+    var pos;
+    var temp;
+    for (var idx = arr.length - 1; idx > 0; idx--){
+        pos = Math.floor(Math.random() * (idx + 1));
+        temp = arr[idx];
+        arr[idx] = arr[pos];
+        arr[pos] = temp;
+    }
+}
+var myArr = [1,2,3,4,5,6,7];
+shuffle(myArr);
+console.log(myArr);
+
+</script>

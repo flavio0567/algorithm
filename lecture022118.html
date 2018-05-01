@@ -1,0 +1,134 @@
+<script>
+//=======Arrs2Map ====================//
+var newObj = {};
+function arrs2Map(arr1, arr2) {
+    for (let i = 0; i < arr1.length; i++) {
+        newObj[arr1[i]] = arr2[i];
+    }
+    return newObj
+}
+let arr1 = ["abc", 3, "yo"];
+let arr2 = [42, "wassup", true];
+let map = arrs2Map(arr1, arr2);
+console.log(newObj);
+
+//======= invertHash ================//
+function invertHash(obj) {
+  var newObj = {};
+  for (key in obj) {
+    newObj[obj[key]] = key;  
+    }
+  return newObj;
+}
+let obj = {"name": "Zaphod", "numHeads": 2};
+let newObj = invertHash(obj);
+console.log(newObj);
+
+//======= myJoin ==================//
+function myJoin(arr) {
+  var str = "";
+  for (var i = 0; i < arr.length; i++) {
+    str += arr[i];  
+    }
+  return str;
+}
+let newStr = myJoin(['a','b','c']);
+console.log(newStr); // "abc" 
+
+//======= mySplit ==================//
+function mySplit(str) {
+  var arr = [];
+  for (var i = 0; i < str.length; i++) {
+    arr.push(str[i]);  
+    }
+  return arr;
+}
+let newArr = mySplit('abc');
+console.log(newArr); //  ["a", "b", "c"]
+
+//======= reverseString ==================//
+function reverseString(str) {
+  var newStr = [];
+  for (var i = str.length-1; i >= 0; i--) {
+    newStr += str[i];  
+    }
+  return newStr;
+}
+let newStr = reverseString('creature');
+console.log(newStr); // "erutaerc"
+
+//======= removeBlanks ==================//
+function removeBlanks(str) {
+  var newStr = "";
+  for (var i = 0; i < str.length; i++)  {
+    if (str[i] != " ") {
+        newStr += str[i];  
+    }
+  }
+  return newStr;
+}
+let newStr = removeBlanks("  play  that   Funky Music  ");
+console.log(newStr); // "playthatFunkyMusic"
+
+//======= getStringDigits ==============//
+function getStringDigits(str) {
+  var num = "";
+  for (var i = 0; i < str.length; i++)  {
+     var int = parseInt(str[i]);
+    if (isNaN(int)) { 
+      continue;
+    } else { 
+        num += str[i];  
+    }
+  }
+  return num;
+}
+let newStr = getStringDigits("Os1a3y5w7h9a2t4?6!8?0");
+console.log(newStr);  //  "1357924680"
+
+//======= acronyms ===================//
+function acronyms(str) {
+  var newStr = "";
+  var ok = false;
+  for (var i = 0; i < str.length; i++)  {
+    if (str[i] != " " && ok === false ) {
+      newStr += str[i].toUpperCase()
+      ok = true;
+    } else if (str[i] == " ") {
+      ok = false; }
+  }
+  return newStr;
+}
+var newStr = acronyms("there's no free lunch  -  gotta pay yer way");
+console.log(newStr);  // "TNFL-GPYW"
+
+var newStr = acronyms("Live from New York, it's Saturday Night!");
+console.log(newStr);  // "LFNYISN"
+
+//===just for fun ======================//
+var myAssocArr = {};
+myAssocArr.IQ = 116;
+myAssocArr["fun"] = "Martin honks on a tenor saxophone";
+console.log(myAssocArr); 
+// { IQ: 116; fun: "Martin honks on a tenor saxophone" }
+
+console.log(typeof myAssocArr.fun);	// "string"
+var myChar = myAssocArr.fun[26];		// "x"
+console.log(typeof myChar);			// "string"
+
+console.log(myAssocArr.fun.length);	// 33
+console.log("".length);			// 0
+
+myArray = myAssocArr["fun"].split(" ");
+	// ["Martin","honks","on","a","tenor","saxophone"]
+console.log(myArray[5].split(""));
+	// ["s","a","x","o","p","h","o","n","e"];
+
+console.log(myArray.join());
+// "Martin, honks, on, a, tenor, saxophone"
+console.log(myArray.join("-"));
+		// "Martin-honks-on-a-tenor-saxophone"
+
+console.log(1 + 2 + "3" + "4" + 5 + 6);
+
+</script>

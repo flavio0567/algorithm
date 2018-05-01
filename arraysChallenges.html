@@ -1,0 +1,141 @@
+<script>
+
+console.log("=======PushFront===================");
+
+function pushFront(arr, val) {
+  for (var i = arr.length; i > 0; i--) {
+      arr[i] = arr[i-1];
+  }
+  arr[0] = val;
+  return arr;
+}
+var arr = pushFront([1,2,3,4,5,6,100], 34);
+console.log(arr);
+
+console.log("=======popFront===================");
+
+function popFront(arr, val) {
+  var j = arr[0];
+  for (var i = 0; i < arr.length - 1; i++) {
+      arr[i] = arr[i+1];
+  }
+  arr.pop();
+  console.log(arr);
+  return j;
+}
+var arr = popFront([1,2,3,4,5,6,100]);
+console.log(arr);
+
+console.log("=======insertAt===================");
+
+function insertAt(arr, idx, val) {
+  var temp = [];
+  var j = 0;
+  for (var i = 0 ; i < arr.length; i++) {
+    if(i == idx ) {
+      temp[j] = val;
+      j++;
+      temp[j] = arr[i];
+    } else {
+      temp[j] = arr[i];
+    }
+    j++;
+  }
+  if (idx >= arr.length) { temp[idx] = val };
+  arr = temp;
+  return arr;
+}
+var arr = insertAt([1,2,3,4,5,6,100], 3, 34);
+console.log(arr);
+
+console.log("=======removeAt==================");
+
+function removeAt(arr, idx) {
+  if (idx >= arr.length || idx < 0) {return null;}
+  var temp = [];
+  var j = 0;
+  var res;
+  for (var i = 0 ; i < arr.length; i++) {
+    if(i == idx) {
+      res = arr[i];
+      i++;
+      temp[j] = arr[i];
+    } else {
+      temp[j] = arr[i];
+    }
+    j++;
+  }
+  if (idx >= arr.length-1) {temp.pop()};
+  arr = temp;
+  console.log(arr);
+  return res;
+}
+var arr = removeAt([1,2,'Dojo',4,5,6,100], 2);
+console.log(arr);
+
+console.log("=======secondToLast============");
+
+function secondToLast(arr) {
+  return arr[arr.length-2];
+}
+var arr = secondToLast([1,2,3,4,5,6,100]);
+console.log(arr);
+
+console.log("=======nthToLast===============");
+
+function nthToLast(arr, nth) {
+  if (nth > arr.length || nth < 1) {return null;}
+  return arr[arr.length-nth];
+}
+var arr = nthToLast([8,1,2,3,4,5,6,8,100,100], 10);
+console.log(arr);
+
+console.log("=======secondLargest============");
+
+function secondLargest(arr) {
+  var j = arr[0];
+  var z;
+  for (var i = 0; i < arr.length; i++) {
+    if (j <= arr[i]) {
+      j = arr[i];
+    }
+  }
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] < j) {
+      z = arr[i];
+    }
+  }
+  return z;
+}
+var arr = secondLargest([8,1,2,3,4,5,6,8,100,100]);
+console.log(arr);
+
+console.log("=======nthLargest============");
+
+function nthLargest(arr, nth) {
+  var result;
+  var ok = false;
+  while (!ok) {
+    ok = true;
+    for (var i = 1; i < arr.length; i++) {
+      if (arr[i-1] > arr[i]) {
+        ok = false;
+        var t = arr[i-1];
+        arr[i-1] = arr[i];
+        arr[i] = t;
+      }
+    }
+  }
+  if (nth > arr.length || nth <= 0) {
+      result = null
+    } else {
+      result = arr[arr.length-nth];
+  }
+  console.log(arr);
+  return result;
+}
+
+var arr = nthLargest([8,9,1,100,-2,100,3,4,6,100,5,0], 5);
+console.log(arr);
+
+</script>
