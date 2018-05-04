@@ -1,0 +1,162 @@
+<script>
+
+function SLNode(value) {
+    this.val = value;
+    this.next = null;
+}
+
+function SLQueue() {
+    this.head = null;
+    this.tail = null;
+    this.enqueue = function(val) {
+        console.log('enqueue invoked');
+        const node = new SLNode(val);
+        if (!this.tail) {
+            if (!this.head) { 
+                this.head = node;
+            } else {
+                this.head.next = node;
+                this.tail = node;
+            }
+        } else { 
+            this.tail.next = node;
+            this.tail = node;
+        }
+    }
+    this.front = function() {
+        if (this.head) {
+            return this.head.val;
+        } else {
+            return null;
+        }
+    }
+    this.dequeue = function() {
+        if (!this.head) { return null;
+        } else {
+            let temp = this.head.val;
+            if (this.head.next) {
+                this.head = this.head.next;
+            } else {
+                this.head = null;
+            }
+            return temp;        
+        }
+    }
+    this.contains = function(val) {
+        let res = false;
+        if (!this.head) { 
+            return null;
+        } else {
+            let cur = this.head;
+            while(cur) {
+                if (cur.val === val){
+                    res = true;
+                }
+                cur = cur.next;
+            }
+        }
+        return res;
+    }
+    this.isEmpty = function() {
+        if (!this.head) { 
+            return true;
+        } else {
+            return false;
+        } 
+    } 
+}
+
+function CompareQueues(q1, q2) {
+    if (!q1 || !q2) { return false};
+
+    let cur1 = q1.head;
+    let cur2 = q2.head;
+    let length1 = 0;
+    let length2 = 0;
+
+    while(cur1) {
+        length1++;
+        cur1 = cur1.next;
+    }
+
+    while(cur2) {
+        length2++;
+        cur2 = cur2.next;
+    }
+
+    if (length1 !== length2) {
+        return false;
+    }
+
+    let curQ1 = q1.head;
+    let curQ2 = q2.head;
+    let res = true;
+
+    while(curQ1.next || curQ2.next) {
+        if (curQ1.val !== curQ2.val || curQ1.next.val !== curQ2.next.val) {
+            res = false;
+            break;
+        }
+        curQ1 = curQ1.next;
+        curQ2 = curQ2.next;
+    }
+    return res;
+}
+
+    function RemoveMin(queue3) {
+        let cur = queue3.head;
+        let run = cur.next;
+        while(cur) {
+            while(run){
+                if(cur.val === run.val){
+                    cur.next = run.next.next;
+                }
+                run = run.next;
+            }
+            cur = cur.next;
+            if(cur){
+                run = cur.next;
+            } else {
+                break;
+            }
+        }
+    }
+
+/* test area */
+
+// const queue1 = new SLQueue();
+// queue1.enqueue(1);
+// queue1.enqueue(2);
+// queue1.enqueue(3);
+// queue1.enqueue(4);
+// queue1.enqueue(5);
+// console.log('queue 1: ', queue1);
+// ############ front() ############
+// console.log(queue1.front());
+// console.log(queue1);
+// ############ dequeue() ##########
+// console.log(queue1.dequeue());
+// ############ contains(val)#######
+// console.log(queue1.contains('Dojo'));
+// ############ isEmpty()###########
+// console.log(queue1.isEmpty());
+// ############ CompareQueues()###########
+// const queue2 = new SLQueue();
+// queue2.enqueue(1);
+// queue2.enqueue(2);
+// queue2.enqueue(3);
+// queue2.enqueue(4);
+// queue2.enqueue(5);
+// console.log('queue 2: ', queue2);
+// let comp = CompareQueues(queue1, queue2);
+// console.log(comp);
+// ############ RemoveMin()###########
+const queue3 = new SLQueue();
+queue3.enqueue(7);
+queue3.enqueue(2);
+queue3.enqueue(5);
+queue3.enqueue(2);
+queue3.enqueue(4);
+RemoveMin(queue3);
+console.log('queue 3: ', queue3);
+</script>

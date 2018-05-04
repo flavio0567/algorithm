@@ -1,0 +1,132 @@
+<script>
+
+    function SLNode(value) {
+        this.val = value;
+        this.next = null;
+    }
+    
+    function SLStack() {
+        this._top = null;
+        this._size = 0;
+        this.push = function(val) {
+            console.log('push was invoked');
+            this._size++;
+            let newNode = new SLNode(val);
+            if(!this._top){
+                this._top = newNode;
+            } else {
+                if (!this._top) {
+                    this._top = newNode;
+                } else {
+                    newNode.next = this._top;
+                    this._top = newNode;
+                }
+            }  
+        }
+        this.top = function () {
+            console.log('top was invoked');
+            if (!this._top) {
+                return undefined;
+            }
+            return this._top.val;
+        }
+        this.isEmpty = function() {
+            console.log('isEmpty was invoked');
+            if (!this._top) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        this.pop = function () {
+            console.log('pop was invoked');
+            if (!this._top) {
+                return undefined;
+            } else {
+                this._size--;
+                let val;
+                if (!this._top.next) {
+                    val = this._top.val;
+                    this._top = null;
+                } else {
+                    val = this._top.val;
+                    this._top = this._top.next;
+                }
+                return val;
+            } 
+        }
+        this.contains = function () {
+            console.log('contains was invoked');
+            if (!this._top) {
+                return undefined;
+            } else {
+                var res = [this._top.val];
+                var curr = this._top.next;
+                while(curr) {
+                    res.push(curr.val);
+                    curr = curr.next;
+                }
+            }
+            return res;
+        }
+        this.size = function () {
+            if(!this._top) {
+                return undefined;
+            } else {
+                return this._size;
+            }
+        } 
+    }
+  
+    function Compare(stk1, stk2) {
+        console.log('compare was invoked');
+        if(!stk1._top || !stk2._top) {
+            return undefined;
+        }
+        var curr1 = stk1._top;
+        var curr2 = stk2._top;
+        const stk3 = new SLStack();
+        while (curr1) {
+            if(curr1.val === curr2.val) {
+                stk3.push(curr1.val);
+                console.log('stk3: ', stk3);
+                curr1 = curr1.next;
+                curr2 = curr2.next;
+            }
+        }
+        return stk3;
+    }
+    
+    /* test area */
+    
+    const stack1 = new SLStack();
+    stack1.push(1);
+    stack1.push(2);
+    // stack1.push(3);
+    // stack1.push(4);
+    // stack1.push(5);
+    const stack2 = new SLStack();
+    stack2.push(1);
+    // stack2.push(2);
+    // stack2.push(3);
+    // stack2.push(4);
+    // stack2.push(5);
+    // console.log('stack1 ', stack1);
+    // ############ top() ############
+    // let valTop = stack1.top();
+    // console.log('val top ', valTop);
+    // ############ isEmpty() ############
+    // let isEmpty = stack1.isEmpty();
+    // console.log('isEmpty? ', isEmpty);
+    // ############ pop() ############
+    // let valTop = stack1.pop();
+    // console.log('val top removed ', valTop);
+    // console.log('stack1 after pop ', stack1);
+    // ############ contains() ############
+    // let cont = stack1.contains();
+    // console.log('contains in stack ', cont);
+    // ############ size() ############
+    //    console.log('size of stack ', stack1.size());
+    // ############ compare() ############
+       console.log('stacks compared: ', Compare(stack1, stack2));
+    </script>
